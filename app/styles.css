@@ -1,49 +1,94 @@
+/* Importa Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
+    --background: #f4f4f4;
+    --primary: #007bff;
+    --text-color: #333;
 }
 
 body {
-    color: var(--foreground);
+    font-family: Arial, sans-serif;
     background: var(--background);
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
     padding: 20px;
 }
 
+/* Contêiner principal */
 .container {
-    background: rgba(0, 0, 0, 0.05);
-    padding: 20px;
+    display: grid;
+    grid-template-areas: 
+        "header"
+        "mensagens"
+        "main"
+        "noticias";
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 90%;
+    max-width: 414px;
+    background: white;
+    padding: 16px;
     border-radius: 8px;
-    display: inline-block;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-button {
-    background: #007bff;
+/* Estilizando seções */
+.header {
+    grid-area: header;
+    background: var(--primary);
     color: white;
-    padding: 10px 20px;
-    border: none;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.mensagens {
+    grid-area: mensagens;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mensagem {
+    background: #ddd;
+    padding: 12px;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
 }
 
-button:hover {
-    background: #0056b3;
+.main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-p {
-    font-size: 18px;
-    margin-top: 15px;
+.aula {
+    background: #e3e3e3;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.noticias {
+    grid-area: noticias;
+    background: #ccc;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Responsividade para telas maiores */
+@media (min-width: 600px) {
+    .container {
+        grid-template-areas: 
+            "header header"
+            "mensagens main"
+            "noticias noticias";
+        grid-template-columns: 1fr 2fr;
+    }
 }

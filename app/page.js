@@ -4,77 +4,95 @@ import { useState } from "react";
 
 export default function Home() {
     const [mensagem, setMensagem] = useState("");
+    const [usuario, setUsuario] = useState({
+        nome: "Raphael",
+        matricula: "123456",
+        pendencia: true,
+        acessibilidade: true,
+        armarioReservado: "8A"
+    });
 
-    // Objeto do usuário
-    const usuario = { nome: "Jeniffer", matricula: "123456", pendencia: false, acessibilidade: true };
+    // Lista de notícias
+    const [noticias, setNoticias] = useState([
+        { id: 1, titulo: "Evento acadêmico", descricao: "Não perca a semana acadêmica de tecnologia!" },
+        { id: 2, titulo: "Matrículas abertas", descricao: "Garanta sua matrícula para o próximo semestre." }
+    ]);
 
-    // Lista de armários disponíveis
-    const armarios = [
-        { id: 1, formato: "padrao", status: true, acessivel: false },
-        { id: 2, formato: "padrao", status: true, acessivel: false },
-        { id: 3, formato: "padrao", status: true, acessivel: false },
-        { id: 4, formato: "padrao", status: false, acessivel: true },
-        { id: 5, formato: "padrao", status: false, acessivel: true },
-        { id: 6, formato: "duplo", status: true, acessivel: true },
-        { id: 7, formato: "duplo", status: false, acessivel: true },
-        { id: 8, formato: "duplo", status: false, acessivel: true }
-    ];
-
+    // Simulação de reserva de armário
     function reservarArmario() {
         let tipoSelecionado = document.getElementById("tipoArmario").value;
 
-        // Filtrar armários disponíveis e acessíveis ao usuário
-        let armariosDisponiveis = armarios.filter(a => a.formato === tipoSelecionado && a.status && usuario.acessibilidade === a.acessivel);
+        // Atualiza o usuário com um armário reservado
+        setUsuario(prev => ({
+            ...prev,
+            armarioReservado: tipoSelecionado === "padrao" ? "12B" : "7C"
+        }));
 
-        if (armariosDisponiveis.length === 0) {
-            setMensagem(`❌ Olá, ${usuario.nome}! Nenhum armário disponível para o tipo selecionado.`);
-            return;
-        }
-
-        // Seleciona um armário aleatório disponível
-        let armarioSorteado = armariosDisponiveis[Math.floor(Math.random() * armariosDisponiveis.length)];
-
-        // Registrar data/hora da reserva
-        let dataReserva = new Date();
-        armarioSorteado.dataReserva = dataReserva.toLocaleString();
-
-        // Calcular data/hora da entrega (24h depois)
-        let dataEntrega = new Date(dataReserva);
-        dataEntrega.setHours(dataEntrega.getHours() + 24);
-        armarioSorteado.dataEntrega = dataEntrega.toLocaleString();
-
-        // Atualizar status do armário
-        armarioSorteado.status = false;
-
-        // Atualizar pendência do usuário
-        usuario.pendencia = true;
-
-        // Exibir resultado da reserva
         setMensagem(`
-            ✅ Olá, <strong>${usuario.nome}</strong>!<br/>
-            📌 O armário <strong>${armarioSorteado.id}</strong> foi reservado com sucesso!<br/>
-            📅 <strong>Data/Hora da Reserva:</strong> ${armarioSorteado.dataReserva} <br/>
-            ⏳ <strong>Data/Hora da Entrega:</strong> ${armarioSorteado.dataEntrega}
+            ✅ Olá, ${usuario.nome}!<br/>
+            📌 Seu armário <strong>${tipoSelecionado === "padrao" ? "12B" : "7C"}</strong> foi reservado com sucesso!
         `);
+    }
+
+    // Função opcional para adicionar notícias dinamicamente
+    function adicionarNoticia() {
+        setNoticias(prevNoticias => [
+            ...prevNoticias,
+            { id: prevNoticias.length + 1, titulo: "Nova Notícia", descricao: "Descrição da nova notícia" }
+        ]);
     }
 
     return (
         <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-gray-800 p-6">
             <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
-                <h1 className="text-2xl font-bold text-center text-blue-600">Reserva de Armário</h1>
-                <p className="text-center text-gray-600 mb-4">Escolha um tipo de armário e clique em reservar.</p>
+                <header className="bg-blue-600 text-white p-4 rounded mb-4">
+                    <h1 className="text-xl font-bold">Olá, {usuario.nome}</h1>
+                    <p>
+                        {usuario.armarioReservado
+                            ? `📦 Armário reservado: ${usuario.armarioReservado}`
+                            : "🚪 Nenhum armário reservado"}
+                        <br />
+                        {usuario.pendencia ? "⚠️ Você possui uma pendência financeira!" : "✅ Nenhuma pendência financeira"}
+                    </p>
+                </header>
 
-                <label htmlFor="tipoArmario" className="block text-gray-700 font-semibold mb-2">Selecione o tipo de armário:</label>
-                <select id="tipoArmario" className="w-full border p-2 rounded mb-4">
-                    <option value="padrao">Padrão</option>
-                    <option value="duplo">Duplo</option>
-                </select>
+                <section className="mb-4">
+                    <h2 className="text-lg font-semibold">Mensagens</h2>
+                    <div className="bg-gray-200 p-3 rounded mt-2">📢 Aviso importante da coordenação</div>
+                    <div className="bg-gray-200 p-3 rounded mt-2">🎓 Sua matrícula foi confirmada!</div>
+                </section>
 
-                <button 
-                    onClick={reservarArmario} 
-                    className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition"
-                >
-                    Reservar
+                <section className="mb-4">
+                    <h2 className="text-lg font-semibold">Reservar Armário</h2>
+                    <label htmlFor="tipoArmario" className="block text-gray-700 font-semibold mb-2">Selecione o tipo de armário:</label>
+                    <select id="tipoArmario" className="w-full border p-2 rounded mb-2">
+                        <option value="padrao">Padrão</option>
+                        <option value="duplo">Duplo</option>
+                    </select>
+                    <button onClick={reservarArmario} className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition">
+                        Reservar
+                    </button>
+                </section>
+
+                <section className="mb-4">
+                    <h2 className="text-lg font-semibold">Disciplinas</h2>
+                    <div className="bg-green-200 p-3 rounded mt-2">📖 Engenharia de Software - Sala A101</div>
+                    <div className="bg-green-200 p-3 rounded mt-2">📖 Design de Interfaces - Sala B202</div>
+                    <div className="bg-green-200 p-3 rounded mt-2">📖 Banco de Dados - Sala C303</div>
+                </section>
+
+                <section className="mb-4">
+                    <h2 className="text-lg font-semibold">Notícias</h2>
+                    {noticias.map((noticia) => (
+                        <div key={noticia.id} className="bg-yellow-200 p-3 rounded mt-2">
+                            <strong>{noticia.titulo}</strong>
+                            <p>{noticia.descricao}</p>
+                        </div>
+                    ))}
+                </section>
+
+                <button onClick={adicionarNoticia} className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition">
+                    Adicionar Notícia
                 </button>
 
                 {mensagem && (
