@@ -43,6 +43,7 @@ body.dark .container {
 
 body.dark .header {
     background: var(--primary-dark);
+    color: black;
 }
 
 .mensagens, .main, .noticias {

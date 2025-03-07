@@ -6,34 +6,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensagemContainer = document.getElementById("mensagem");
     const noticiasContainer = document.getElementById("noticias-container");
 
-    // Aplicar o tema salvo no localStorage
-    const currentTheme = localStorage.getItem("theme");
-    if (currentTheme === "dark") {
+    // Verifica se há um tema salvo no localStorage e aplica
+    if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark");
     }
 
-    // Alternar tema e salvar no localStorage
+    // Alterna o tema ao clicar no botão
     if (toggleThemeBtn) {
         toggleThemeBtn.addEventListener("click", () => {
             document.body.classList.toggle("dark");
-            localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+
+            // Atualiza o localStorage com o estado atual
+            const novoTema = document.body.classList.contains("dark") ? "dark" : "light";
+            localStorage.setItem("theme", novoTema);
         });
     }
 
-    // Reservar armário
+    // Função para reservar armário
     if (reservarBtn && tipoArmarioSelect && mensagemContainer) {
         reservarBtn.addEventListener("click", () => {
             const tipoSelecionado = tipoArmarioSelect.value;
             const numeroArmario = tipoSelecionado === "padrao" ? "12B" : "7C";
-
-            mensagemContainer.innerHTML = `
-                ✅ Olá, Raphael!<br/>
-                📌 Seu armário <strong>${numeroArmario}</strong> foi reservado com sucesso!
-            `;
+            
+            mensagemContainer.innerHTML = `✅ Olá, Jeniffer!<br/>📌 Seu armário <strong>${numeroArmario}</strong> foi reservado com sucesso!`;
         });
     }
 
-    // Adicionar notícia dinamicamente
+    // Função para adicionar notícia dinamicamente
     if (adicionarNoticiaBtn && noticiasContainer) {
         adicionarNoticiaBtn.addEventListener("click", () => {
             const novaNoticia = document.createElement("div");
