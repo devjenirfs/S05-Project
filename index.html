@@ -5,31 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - App Inatel</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap" rel="stylesheet">
+    <script defer src="script.js"></script>
 </head>
 <body>
     <div class="container">
-        <!-- Cabeçalho -->
         <header class="header">
             <h1>Olá, Raphael</h1>
-            <p>Você possui um armário reservado com acesso pela porta 8A.<br>Você possui uma pendência no financeiro.</p>
+            <p>📦 Armário reservado: 8A<br>⚠️ Você possui uma pendência no financeiro.</p>
+            <button id="toggle-theme">Alternar Tema</button>
         </header>
 
-        <!-- Mensagens -->
         <section class="mensagens">
-            <div class="mensagem">Mensagem 1</div>
-            <div class="mensagem">Mensagem 2</div>
+            <div class="mensagem">📢 Aviso importante da coordenação</div>
+            <div class="mensagem">🎓 Sua matrícula foi confirmada!</div>
         </section>
 
-        <!-- Conteúdo Principal -->
         <main class="main">
-            <section class="aula">Disciplina - Sala A101</section>
-            <section class="aula">Disciplina - Sala B202</section>
-            <section class="aula">Disciplina - Sala C303</section>
+            <section class="aula">📖 Engenharia de Software - Sala A101</section>
+            <section class="aula">📖 Design de Interfaces - Sala B202</section>
+            <section class="aula">📖 Banco de Dados - Sala C303</section>
         </main>
 
-        <!-- Notícias -->
         <section class="noticias">
-            <div class="noticia">Card de Notícias - Destaque</div>
+            <h2>📰 Notícias</h2>
+            <div class="noticia">📢 Evento acadêmico: Não perca a semana acadêmica de tecnologia!</div>
+            <div class="noticia">📢 Matrículas abertas: Garanta sua matrícula para o próximo semestre.</div>
         </section>
     </div>
 </body>
