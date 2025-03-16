@@ -1,57 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - App Inatel</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap" rel="stylesheet">
-    <script defer src="app/script.js"></script>
+    <title>Reserva de Armários</title>
+    <link rel="stylesheet" href="styles.css">  <!-- 🟢 Aqui vinculamos o CSS externo -->
 </head>
 <body>
     <div class="container">
-        <header class="header">
-            <h1>Olá, Jeniffer</h1>
-            <button id="toggle-theme">Alternar Tema</button>
-        </header>
+        <div class="header">Bem-vinda, Jeniffer!</div>
 
-        <main class="main">
-            <!-- Reserva de Armário -->
-            <section class="reservar-armario">
-                <h2>🔐 Reserva de Armário</h2>
-                <select id="tipoArmario">
-                    <option value="padrao">Padrão</option>
-                    <option value="duplo">Duplo</option>
-                </select>
-                <button id="reservar-btn">Reservar Armário</button>
-                <div id="mensagem"></div>
-            </section>
+        <button id="toggle-theme">Alternar Tema</button>
 
-            <!-- Notícias -->
-            <section class="noticias">
-                <h2>📰 Notícias</h2>
-                <div id="noticias-container">
-                    <div class="noticia">📢 Evento acadêmico: Não perca a semana acadêmica de tecnologia!</div>
-                    <div class="noticia">📢 Matrículas abertas: Garanta sua matrícula para o próximo semestre.</div>
-                </div>
-                <button id="adicionar-noticia">Adicionar Notícia</button>
-            </section>
+        <div class="mensagens">
+            <p id="mensagem"></p>
+        </div>
 
-            <!-- Mensagens -->
-            <section class="mensagens">
-                <h2>📩 Mensagens</h2>
-                <div class="mensagem">📢 Aviso importante da coordenação</div>
-                <div class="mensagem">🎓 Sua matrícula foi confirmada!</div>
-            </section>
+        <div class="main">
+            <label for="tipoArmario">Escolha o tipo de armário:</label>
+            <select id="tipoArmario">
+                <option value="padrao">Padrão</option>
+                <option value="premium">Premium</option>
+            </select>
+            <button id="reservar-btn">Reservar Armário</button>
+        </div>
 
-            <!-- Disciplinas -->
-            <section class="disciplinas">
-                <h2>📖 Disciplinas</h2>
-                <div class="aula">Engenharia de Software - Sala A101</div>
-                <div class="aula">Design de Interfaces - Sala B202</div>
-                <div class="aula">Banco de Dados - Sala C303</div>
-            </section>
-        </main>
+        <div class="noticias">
+            <h3>Últimas Notícias</h3>
+            <div id="noticias-container"></div>
+            <button id="adicionar-noticia">Adicionar Notícia</button>
+        </div>
     </div>
+
+    <script src="script.js"></script> <!-- 🟢 O JavaScript deve ser carregado no final -->
 </body>
 </html>

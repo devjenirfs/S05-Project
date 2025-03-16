@@ -50,14 +50,14 @@ body.dark .header {
     margin-top: 20px;
 }
 
-.mensagem, .aula, .noticia {
+.mensagem, .noticia {
     background: #ddd;
     padding: 12px;
     border-radius: 5px;
     margin-top: 8px;
 }
 
-body.dark .mensagem, body.dark .aula, body.dark .noticia {
+body.dark .mensagem, body.dark .noticia {
     background: #444;
 }
 
