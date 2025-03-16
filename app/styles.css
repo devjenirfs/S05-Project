@@ -1,3 +1,4 @@
+/* 🟢 Variáveis globais de cores */
 :root {
     --background-light: #f4f4f4;
     --background-dark: #1e1e1e;
@@ -7,18 +8,21 @@
     --text-dark: #fff;
 }
 
+/* 🟢 Estilização base */
 body {
     font-family: 'Arimo', sans-serif;
     background: var(--background-light);
     color: var(--text-light);
-    transition: background 0.3s, color 0.3s;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* 🟣 Tema Escuro */
 body.dark {
     background: var(--background-dark);
     color: var(--text-dark);
 }
 
+/* 🟢 Container principal */
 .container {
     width: 90%;
     max-width: 600px;
@@ -29,27 +33,34 @@ body.dark {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* 🟣 Container no Tema Escuro */
 body.dark .container {
     background: #333;
 }
 
+/* 🟢 Cabeçalho */
 .header {
     background: var(--primary-light);
     color: white;
     padding: 16px;
     text-align: center;
     border-radius: 8px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
+/* 🟣 Cabeçalho no Tema Escuro */
 body.dark .header {
     background: var(--primary-dark);
     color: black;
 }
 
+/* 🟢 Mensagens e seções principais */
 .mensagens, .main, .noticias {
     margin-top: 20px;
 }
 
+/* 🟢 Mensagens e notícias */
 .mensagem, .noticia {
     background: #ddd;
     padding: 12px;
@@ -57,21 +68,108 @@ body.dark .header {
     margin-top: 8px;
 }
 
+/* 🟣 Tema Escuro - Mensagens e notícias */
 body.dark .mensagem, body.dark .noticia {
     background: #444;
 }
 
+/* 🟢 Botões */
 button {
     margin-top: 10px;
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     background: var(--primary-light);
     color: white;
+    font-size: 16px;
+    transition: background 0.3s ease;
 }
 
+/* 🟣 Botões no Tema Escuro */
 body.dark button {
     background: var(--primary-dark);
     color: black;
+}
+
+/* 🟢 CARROSSEL */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 🟢 Ajuste para centralizar e facilitar a rolagem */
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* 🟢 Estilização de cada card */
+.card {
+    min-width: 100%;
+    text-align: center;
+}
+
+/* 🟢 Imagem do Card */
+.card img {
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+/* 🟢 Informações do Card */
+.info {
+    padding: 10px;
+    background: white;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+/* 🟣 Tema Escuro - Estilização do Carrossel */
+body.dark .carousel-container {
+    background: #444;
+}
+
+body.dark .info {
+    background: #555;
+    color: white;
+}
+
+/* 🟢 Botões do Carrossel */
+.carousel-container button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+/* 🟢 Efeito de hover nos botões */
+.carousel-container button:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* 🟢 Posição dos botões */
+#prevBtn { left: 10px; }
+#nextBtn { right: 10px; }
+
+/* 🟣 Tema Escuro - Botões */
+body.dark .carousel-container button {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+body.dark .carousel-container button:hover {
+    background: rgba(255, 255, 255, 0.5);
 }
