@@ -1,6 +1,7 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../app/styles.css";
+
 const eventos = [
     {
         id: 1,
@@ -46,21 +47,68 @@ const eventos = [
 
 export default function Carrossel() {
     const [index, setIndex] = useState(0);
+    const intervalRef = useRef(null);
+    const carouselRef = useRef(null);
+    const startXRef = useRef(0); // posição inicial do toque
 
     const nextSlide = () => setIndex((prev) => (prev + 1) % eventos.length);
     const prevSlide = () => setIndex((prev) => (prev - 1 + eventos.length) % eventos.length);
 
+    // ▶️ Inicia o slide automático
+    const startAutoSlide = () => {
+        intervalRef.current = setInterval(() => {
+            nextSlide();
+        }, 5000);
+    };
+
+    useEffect(() => {
+        startAutoSlide();
+        return () => clearInterval(intervalRef.current);
+    }, []);
+
+    const handleMouseEnter = () => clearInterval(intervalRef.current);
+    const handleMouseLeave = () => startAutoSlide();
+
+    // 👇 TOQUE - início
+    const handleTouchStart = (e) => {
+        startXRef.current = e.touches[0].clientX;
+    };
+
+    // 👉 TOQUE - fim
+    const handleTouchEnd = (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diff = startXRef.current - endX;
+
+        if (diff > 50) {
+            nextSlide(); // arrastou para a esquerda
+        } else if (diff < -50) {
+            prevSlide(); // arrastou para a direita
+        }
+    };
+
     return (
-        <div className="carousel-container">
-            <div className="carousel">
-                <div className="card">
-                    <img src={eventos[index].image} alt={eventos[index].title} />
-                    <div className="info">
-                        <h3>{eventos[index].title}</h3>
-                        <p>{eventos[index].description}</p>
-                        <p>{eventos[index].date} às {eventos[index].time} | {eventos[index].location}</p>
+        <div 
+            className="carousel-container"
+            ref={carouselRef}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+        >
+            <div 
+                className="carousel" 
+                style={{ transform: `translateX(-${index * 100}%)` }}
+            >
+                {eventos.map((evento) => (
+                    <div className="card" key={evento.id}>
+                        <img src={evento.image} alt={evento.title} />
+                        <div className="info">
+                            <h3>{evento.title}</h3>
+                            <p>{evento.description}</p>
+                            <p>{evento.date} às {evento.time} | {evento.location}</p>
+                        </div>
                     </div>
-                </div>
+                ))}
             </div>
             <button id="prevBtn" onClick={prevSlide}>❮</button>
             <button id="nextBtn" onClick={nextSlide}>❯</button>
