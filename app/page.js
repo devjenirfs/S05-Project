@@ -5,6 +5,7 @@ import ThemeToggle from "../components/ThemeToggle";
 import ArmarioReserva from "../components/ArmarioReserva";
 import Noticias from "../components/Noticias";
 import Carrossel from "../components/Carrossel";  // 🆕 Carrossel de notícias
+import AulasReactComponent from "../components/AulasComponent";
 import "./styles.css";
 
 export default function App() {
@@ -15,7 +16,9 @@ export default function App() {
                 <ThemeToggle />
                 <ArmarioReserva />
                 <Noticias />
+                <AulasReactComponent/>
                 <Carrossel/>
+
             </div>
         </ThemeProvider>
     );
