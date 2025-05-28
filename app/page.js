@@ -7,6 +7,7 @@ import Noticias from "../components/Noticias";
 import Carrossel from "../components/Carrossel";  // 🆕 Carrossel de notícias
 import AulasReactComponent from "../components/AulasComponent";
 import "./styles.css";
+import AvisosCentral from "@/components/nova_funcionalidade/AvisosCentral";
 
 export default function App() {
     return (
@@ -16,6 +17,7 @@ export default function App() {
                 <ThemeToggle />
                 <ArmarioReserva />
                 <Noticias />
+                <AvisosCentral/>
                 <AulasReactComponent/>
                 <Carrossel/>
 

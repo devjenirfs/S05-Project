@@ -3,9 +3,9 @@
     --background-light: #f4f4f4;
     --background-dark: #1e1e1e;
     --primary-light: #007bff;
-    --primary-dark: #ffcc00;
+    --primary-dark: #040F27;
     --text-light: #333;
-    --text-dark: #fff;
+    --text-dark: #ffffff;
 }
 
 /* 🟢 Estilização base */
@@ -52,7 +52,7 @@ body.dark .container {
 /* 🟣 Cabeçalho no Tema Escuro */
 body.dark .header {
     background: var(--primary-dark);
-    color: black;
+    color: #f4f4f4;
 }
 
 /* 🟢 Mensagens e seções principais */
@@ -70,7 +70,8 @@ body.dark .header {
 
 /* 🟣 Tema Escuro - Mensagens e notícias */
 body.dark .mensagem, body.dark .noticia {
-    background: #444;
+    background: #040F27;
+    color: #fff;
 }
 
 /* 🟢 Botões */
@@ -89,7 +90,7 @@ button {
 /* 🟣 Botões no Tema Escuro */
 body.dark button {
     background: var(--primary-dark);
-    color: black;
+    color: #f4f4f4;
 }
 
 /* 🟢 CARROSSEL */
@@ -133,12 +134,12 @@ body.dark button {
 
 /* 🟣 Tema Escuro - Estilização do Carrossel */
 body.dark .carousel-container {
-    background: #444;
+    background: #040F27;
 }
 
 body.dark .info {
-    background: #555;
-    color: white;
+    background: #040F27;
+    color: #fff;
 }
 
 /* 🟢 Botões do Carrossel */
